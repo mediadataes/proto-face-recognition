@@ -1,0 +1,5 @@
+__pycache__/
+.bin/
+.direnv/
+.pytest_cache/
+.venv/
