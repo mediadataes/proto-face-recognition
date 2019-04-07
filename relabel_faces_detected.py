@@ -199,6 +199,6 @@ if type_object == 'mp4' or type_object == 'avi':
     metadata = [date.fromtimestamp(time.time())]*len(planes)
 
     dictionary_dataframe = {'0start_frames': start_frames,
-                            '1end_frames': end_frames, '2label': labels, '3plane': planes, '4metadata': metadata}
+                            '1end_frames': end_frames, '2label': labels, '3plane': planes}
     df = pd.DataFrame(data=dictionary_dataframe)
-    df.to_csv('/home/yhoatsu/IdeaProjects/ML_News_Face_Recognition/relabeled_faces.csv')
+    df.to_csv('./relabeled_faces.csv')

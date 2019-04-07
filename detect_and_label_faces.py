@@ -273,12 +273,19 @@ elif type_object == 'mp4' or type_object == 'avi':
                     if 0.07 <= width_ratio <= 0.13 and 0 <= length_ratio <= 0.11:
                         type_plane = 'Plano entero'
 
-                # Computes the 128D array that define the face and that'll be used to predict the label of the face.
+            # Computes the 128D array that define the face and that'll be used to predict the label of the face.
             face_descriptor = np.array(face_rec.compute_face_descriptor(frame, shape, resample_times))
             #
             label_predicted = my_knn(face_descriptor, coef=coef_adjustment, neighborhoods=1)
             #
-            if label_predicted != 'Unknown':
+            if label_predicted == 'Unknown':
+                #time_faces.append(frame_to_time(num_frame))
+                #labels_faces.append(label_predicted)
+                #labels_planes.append(type_plane)
+                cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 1)
+                cv2.putText(frame, label_predicted, (left, top),
+                            cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 1, cv2.LINE_AA)
+            else:
                 time_faces.append(frame_to_time(num_frame))
                 labels_faces.append(label_predicted)
                 labels_planes.append(type_plane)
