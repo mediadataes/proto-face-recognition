@@ -1,13 +1,11 @@
-FROM python:3.7
+FROM python:3.6
 
-WORKDIR /usr/src/proto-face-recognition
+WORKDIR /home/yhoatsu/
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends cmake libopencv-dev \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update
+RUN apt-get install -y --fix-missing cmake
 
-COPY requirements.txt ./
+COPY ./ ./
 RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
 
-CMD [ "python", "-m", "helloworld" ]
+
